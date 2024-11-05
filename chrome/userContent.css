@@ -1,0 +1,4 @@
+@-moz-document url(about:newtab), url(about:home) { 
+    /* Changes the logo on the about:home screen */
+      .logo {background-image: url("Fx-Browser-Developer-icon-fullColor.png") !important};
+    }
