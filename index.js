@@ -6,8 +6,10 @@ import {exec} from 'child_process'
 
 program
     .version("1.0.0")
-    .command("update")
-    .description("Update the system, i3, and your package manager")
+    .description("Tools for customizing system")
+
+program.command('update')
+    .description('updates charlimane files from the latest github release')
     .action (() =>{
         console.log("Checking pacman for updates::")
         exec('sudo pacman -Syu', (error,stdout,stderr)=>{
@@ -19,3 +21,5 @@ program
             console.log('stderr: ${stderr}');
         });
     });
+
+program.parse();
