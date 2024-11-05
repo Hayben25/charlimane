@@ -10,16 +10,17 @@ program
 
 program.command('update')
     .description('updates charlimane files from the latest github release')
-    .action (() =>{
-        console.log("Checking pacman for updates::")
-        exec('sudo pacman -Syu', (error,stdout,stderr)=>{
-            if(error){
-                console.error('exec error:${error}');
-                return;
-            }
-            console.log('stdout: ${stdout}');
-            console.log('stderr: ${stderr}');
+    .action(async (options) => {
+        const git = simpleGit();
+    
+        try {
+          const branch = 'https://github.com/Hayben25/charlimane.git' || (await git.revparse(['--abbrev-ref', 'HEAD'])).trim();
+          const { summary } = await git.pull(options.remote, branch);
+    
+          console.log('Pull successful:', summary);
+        } catch (err) {
+          console.error('Error pulling:', err);
+        }
         });
-    });
 
 program.parse();
