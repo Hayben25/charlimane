@@ -10,7 +10,7 @@ program
 program.command('update')
     .description('updates charlimane files from the latest github release')
     .action(async () => {
-      exec('cd ~/code/charlimane && chmod +x update.sh && nohup ./update.sh &> /dev/null &',(error,stdout,stderr) => {
+      exec('cd /usr/lib/node_modules/charlimane && chmod +x update.sh && nohup ./update.sh &> /dev/null &',(error,stdout,stderr) => {
         if(error) {
           console.error(error);
           return;
