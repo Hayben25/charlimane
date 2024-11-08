@@ -22,8 +22,6 @@ program.command('update')
 
 program.command('config <color> <aspect>')
     .description('changes system colors and aspect ratio')
-    .option('-c, --color <color>', 'color you want to change system to', 'red')
-    .option('-a --aspect <aspect>', 'change the aspect ratio of the system(16_10, 16_9)', '16_9')
     .action(async (color, aspect) => {
       exec('cp ~/.config/charlimane/colors/'+ color + ' ~/.Xresources && xrdb -merge ~/.Xresources', (error,stdout,stderr) =>{
         if(error) {
